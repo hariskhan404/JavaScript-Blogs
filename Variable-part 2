@@ -1,0 +1,65 @@
+Blog 2: JavaScript Variables - Best Practices and Common Pitfalls
+Introduction
+As you dive deeper into JavaScript, knowing how to handle variables effectively can save you from headaches later. In this blog, we’ll explore best practices for using variables and highlight common mistakes beginners make.
+
+Best Practices for Variables
+Use const by Default
+If a variable’s value does not change, use const. This makes your code more predictable.
+
+const PI = 3.14;
+Use let for Mutable Variables
+When you know the value will change, use let. Avoid var unless you have a specific reason.
+
+let counter = 0;
+counter++; // Counter becomes 1
+Use Descriptive Variable Names
+Always use meaningful names that describe the purpose of the variable.
+
+❌ Bad Example:
+let x = 10;  
+✅ Good Example:
+
+let productPrice = 10;  
+Avoid Global Variables
+Global variables can cause conflicts between different parts of your code. Use block-scoped variables instead.
+
+Common Pitfalls to Avoid
+Hoisting with var
+Variables declared with var are hoisted to the top of the function but not initialized. This can lead to unexpected results.
+
+console.log(name); // undefined
+var name = "John";
+✅ Use let or const to avoid this issue.
+
+console.log(name); // ReferenceError
+let name = "John";
+Re-declaring Variables
+Accidentally re-declaring variables can create bugs.
+
+var name = "Alice";
+var name = "Bob";  // Allowed, but can be confusing
+✅ Use let or const to prevent this.
+
+let name = "Alice";
+let name = "Bob";  // Error: Identifier 'name' has already been declared
+Using Variables Before Declaration
+Avoid accessing variables before they are declared, as this causes errors with let and const.
+
+console.log(score); // ReferenceError
+let score = 100;
+Misunderstanding const
+Declaring a variable with const means its value cannot be re-assigned, but the contents of objects or arrays can still change.
+
+const user = { name: "Alice" };
+user.name = "Bob"; // Allowed
+console.log(user.name); // Output: Bob
+Advanced Tip: Object Destructuring
+Use destructuring to assign multiple variables at once.
+
+const person = { name: "Alice", age: 25 };
+const { name, age } = person;
+
+console.log(name); // Output: Alice
+console.log(age);  // Output: 25
+Conclusion
+By following best practices like using let and const, avoiding var, and understanding scoping rules, you can write cleaner and more maintainable JavaScript code. Watch out for common pitfalls like hoisting and global variables to avoid tricky bugs.
