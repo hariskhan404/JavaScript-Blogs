@@ -1,0 +1,130 @@
+Day 4: Mastering JavaScript Functions 🚀
+Welcome back to Day 4 of our JavaScript blog series! Today, we’re diving into one of the most fundamental and powerful concepts in JavaScript—Functions. Functions allow you to write reusable code, make your program modular, and perform specific tasks efficiently.
+
+Let’s explore everything you need to know about JavaScript Functions.
+
+What is a Function?
+A function is a block of code designed to perform a specific task. It runs when you call it, and you can reuse it anywhere in your program.
+
+Think of it like a machine:
+
+Input → Function (machine does something) → Output.
+Here’s a simple example of a function in JavaScript:
+
+function sayHello() {
+  console.log("Hello, World!");
+}
+
+// Calling the function
+sayHello();
+Hello, World!
+Types of Functions in JavaScript
+JavaScript provides different ways to define functions:
+
+1. Function Declaration
+A function declared with the function keyword. It can be called before or after its declaration due to hoisting.
+
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+greet("Haris"); // Output: Hello, Haris!
+2. Function Expression
+A function defined as part of an expression. It is not hoisted, so you must define it before calling it.
+
+const add = function (a, b) {
+  return a + b;
+};
+
+console.log(add(2, 3)); // Output: 5
+3. Arrow Functions (ES6)
+A shorter syntax for writing functions introduced in ES6. Ideal for single-line tasks.
+
+const multiply = (a, b) => a * b;
+
+console.log(multiply(4, 5)); // Output: 20
+Function Parameters and Arguments
+Parameters: The placeholders in the function definition.
+Arguments: The actual values passed when calling the function.
+function introduce(name, age) {
+  console.log(`My name is ${name}, and I am ${age} years old.`);
+}
+
+introduce("Ali", 25);
+// Output: My name is Ali, and I am 25 years old.
+Default Parameters (ES6)
+You can provide a default value for parameters:
+
+function greet(name = "Guest") {
+  console.log(`Welcome, ${name}!`);
+}
+
+greet(); // Output: Welcome, Guest!
+greet("Haris"); // Output: Welcome, Haris!
+Return Values
+Functions can return a value using the return keyword. Once a return statement executes, the function ends.
+
+function square(num) {
+  return num * num;
+}
+
+let result = square(6);
+console.log(result); // Output: 36
+Anonymous Functions
+A function without a name is called an anonymous function. They are often used with callbacks.
+
+setTimeout(function () {
+  console.log("This runs after 2 seconds!");
+}, 2000);
+Higher-Order Functions
+Functions that accept other functions as arguments or return functions are called higher-order functions.
+
+Example with a callback function:
+
+function calculate(a, b, operation) {
+  return operation(a, b);
+}
+
+const add = (x, y) => x + y;
+const result = calculate(5, 3, add);
+
+console.log(result); // Output: 8
+Here, the calculate function accepts another function (add) as an argument.
+
+Real-World Example: Calculator
+Let’s build a simple function-based calculator:
+
+function calculator(a, b, operator) {
+  switch (operator) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "*":
+      return a * b;
+    case "/":
+      return a / b;
+    default:
+      return "Invalid operator";
+  }
+}
+
+console.log(calculator(10, 5, "+")); // Output: 15
+console.log(calculator(10, 5, "/")); // Output: 2
+Benefits of Using Functions
+Reusability: Write once, use anywhere.
+Modularity: Break your code into smaller, manageable parts.
+Readability: Makes your code clean and easier to understand.
+Efficiency: Perform repetitive tasks efficiently.
+Conclusion
+Functions are the heart of any JavaScript program. They help you write cleaner, reusable, and maintainable code. Whether you're building a simple app or working on complex logic, mastering functions is crucial.
+
+Next up, we’ll explore Arrays or DOM Manipulation, which will make your JavaScript skills even more powerful.
+
+Quick Challenge for You 🎯
+Create a function that takes an array of numbers as input and returns the sum of all even numbers.
+
+Example Input: [1, 2, 3, 4, 5, 6]
+Expected Output: 12.
+
+Stay tuned for Day 5! Let me know if you have any questions or ideas for future topics. Happy Coding! 🚀
