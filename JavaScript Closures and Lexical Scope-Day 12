@@ -1,0 +1,92 @@
+Day 12: Exploring JavaScript Closures and Lexical Scope
+
+In today's post, we’re going to dive deep into Closures and Lexical Scope, two core concepts in JavaScript that help us manage variable access and the behavior of functions, even when they’re executed outside their original scope.
+
+What is a Closure?
+A Closure is a function that "remembers" its lexical scope, even when the function is executed outside that scope. In simpler terms, a closure allows a function to access variables from its outer function even after the outer function has finished executing.
+
+How Closures Work
+To understand closures, we need to first understand the concept of lexical scoping. When you declare a variable in a function, it's accessible only within that function. However, when a function is nested inside another, the inner function has access to the outer function’s variables, forming the basis for a closure.
+
+Example:
+function outer() {
+  let outerVariable = 'I am from the outer function!';
+
+  function inner() {
+    console.log(outerVariable); // The inner function can access the outer function's variable
+  }
+
+  return inner; // Return the inner function
+}
+
+const closureFunction = outer(); // outer() runs, but the inner() function retains access to outerVariable
+closureFunction(); // Logs: "I am from the outer function!"
+In the above example, even after the outer() function has executed, the inner() function (the closure) still has access to outerVariable.
+
+Lexical Scope and Closures
+Lexical scope refers to the way JavaScript determines the scope of variables based on where they are declared in the code, rather than where they are called. In a nested function, the inner function has access to the variables of the outer function, thanks to lexical scoping.
+
+In the closure example above, inner() remembers the scope of outer(), which allows it to access outerVariable even when inner() is called outside outer().
+
+Practical Use Cases for Closures
+Closures are not just a neat trick—they’re incredibly useful in real-world applications. Here are some common use cases:
+
+Data Privacy: Closures allow you to create private variables and methods that cannot be accessed from outside the closure.
+
+function counter() {
+  let count = 0;
+  
+  return {
+    increment: function() {
+      count++;
+      console.log(count);
+    },
+    decrement: function() {
+      count--;
+      console.log(count);
+    }
+  };
+}
+
+const myCounter = counter();
+myCounter.increment(); // Logs: 1
+myCounter.increment(); // Logs: 2
+myCounter.decrement(); // Logs: 1
+In this example, the count variable is private to the counter function and can only be modified through the increment and decrement methods.
+
+Callback Functions: Closures are commonly used in callbacks, where you need to remember variables from the surrounding scope when passing functions around.
+
+function fetchData(callback) {
+  const data = "Some data";
+  callback(data); // The callback function will have access to 'data' due to closure
+}
+
+fetchData(function(data) {
+  console.log(data); // Logs: "Some data"
+});
+
+Common Pitfalls with Closures
+While closures are powerful, they can also lead to bugs if not used carefully. One common pitfall occurs when closures reference variables in a loop. Let’s look at an example:
+
+function createClosures() {
+  const closures = [];
+  
+  for (let i = 0; i < 3; i++) {
+    closures.push(function() {
+      console.log(i);
+    });
+  }
+
+  return closures;
+}
+
+const closureArr = createClosures();
+closureArr[0](); // Logs: 0
+closureArr[1](); // Logs: 1
+closureArr[2](); // Logs: 2
+In this case, the loop uses let to ensure that each closure captures a different value of i. If you used var instead of let, all closures would have the same value of i, which is 3.
+
+Conclusion
+Closures are a powerful feature in JavaScript, enabling functions to maintain access to their lexical scope even after the outer function has completed execution. Understanding closures and lexical scope is essential for writing efficient, modular, and maintainable code.
+
+In the next post, we’ll explore JavaScript’s this keyword and how it behaves in different contexts. Stay tuned!
