@@ -12,23 +12,15 @@ In the global execution context (outside of any function), this refers to:
 The global object in non-strict mode (window in browsers or global in Node.js).
 undefined in strict mode.
 Example:
-
-javascript
-Copy code
 console.log(this); // In browsers: window
 In strict mode:
-
-javascript
-Copy code
 "use strict";
 console.log(this); // undefined
+
 2. Inside an Object Method
 When this is used in an object method, it refers to the object the method is called on.
 
 Example:
-
-javascript
-Copy code
 const obj = {
   name: "JavaScript",
   greet: function () {
@@ -37,35 +29,29 @@ const obj = {
 };
 
 obj.greet(); // Logs: "JavaScript"
+
 3. In a Regular Function
 When a regular function is called, this defaults to the global object in non-strict mode or undefined in strict mode.
 
 Example:
-
-javascript
-Copy code
 function showThis() {
   console.log(this);
 }
 
 showThis(); // In browsers: window (non-strict mode)
-In strict mode:
 
-javascript
-Copy code
+In strict mode:
 "use strict";
 function showThisStrict() {
   console.log(this);
 }
 
 showThisStrict(); // undefined
+
 4. Arrow Functions
 Arrow functions do not have their own this. Instead, they inherit this from their surrounding (lexical) scope.
 
 Example:
-
-javascript
-Copy code
 const obj = {
   name: "Arrow Function",
   arrowGreet: () => {
@@ -74,10 +60,8 @@ const obj = {
 };
 
 obj.arrowGreet(); // Logs: undefined (or empty) because `this` is inherited from global scope
-To fix this, use a regular function instead:
 
-javascript
-Copy code
+To fix this, use a regular function instead:
 const objFixed = {
   name: "Arrow Function Fixed",
   greet: function () {
@@ -86,26 +70,22 @@ const objFixed = {
 };
 
 objFixed.greet(); // Logs: "Arrow Function Fixed"
+
 5. In a Constructor Function
 In a constructor function, this refers to the newly created object.
 
 Example:
-
-javascript
-Copy code
 function Person(name) {
   this.name = name;
 }
 
 const person1 = new Person("John");
 console.log(person1.name); // Logs: "John"
+
 6. In a Class
 In JavaScript classes, this behaves similarly to constructor functions—it refers to the instance of the class.
 
 Example:
-
-javascript
-Copy code
 class Person {
   constructor(name) {
     this.name = name;
@@ -117,36 +97,28 @@ class Person {
 
 const person2 = new Person("Jane");
 person2.greet(); // Logs: "Hello, Jane"
+
 7. With call, apply, and bind
 JavaScript provides methods to explicitly set the value of this when calling or binding functions.
 
 call: Calls a function with a specific this value and arguments.
-
-javascript
-Copy code
 function greet(greeting) {
   console.log(`${greeting}, ${this.name}`);
 }
 
 const user = { name: "Alice" };
 greet.call(user, "Hi"); // Logs: "Hi, Alice"
+
 apply: Similar to call, but arguments are passed as an array.
-
-javascript
-Copy code
 greet.apply(user, ["Hello"]); // Logs: "Hello, Alice"
-bind: Creates a new function with a specific this value.
 
-javascript
-Copy code
+bind: Creates a new function with a specific this value.
 const boundGreet = greet.bind(user);
 boundGreet("Hey"); // Logs: "Hey, Alice"
+
 Common Pitfalls and Tips
 Losing this in Callbacks
 Be careful when passing methods as callbacks, as this can get lost.
-
-javascript
-Copy code
 const obj = {
   name: "Callback Issue",
   greet: function () {
@@ -157,9 +129,8 @@ const obj = {
 setTimeout(obj.greet, 1000); // Logs: undefined or error
 Fix: Use bind or an arrow function.
 
-javascript
-Copy code
 setTimeout(obj.greet.bind(obj), 1000); // Logs: "Callback Issue"
+
 Arrow Functions in Methods
 Avoid using arrow functions as methods, as they don’t have their own this.
 
